@@ -61,7 +61,7 @@ async def delete_music(
     return {"succeed": True, "message": "Music deleted successfully."}
 
 @app.get("/latest_songs")
-def get_latest_songs(page: int = Query(1, gt=0), page_size: int = Query(10, gt=0)):
+def get_latest_songs(page: int = Query(1, gt=0), page_size: int = Query(20, gt=0)):
     """
     获取最新歌曲列表，支持分页。
     """
