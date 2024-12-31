@@ -1,7 +1,6 @@
 # 原神midi自动演奏器
-基于安卓无障碍服务的原神midi自动演奏器（自动弹琴）  
 
-基础信息请前往原仓库查看
+仅适用于安卓，基础信息请前往原仓库查看
 
 [v1-基于无障碍服务](https://github.com/weixiansen574/Genshin-Lyre-midi-player)
 
