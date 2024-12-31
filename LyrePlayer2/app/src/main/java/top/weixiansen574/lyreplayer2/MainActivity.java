@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         openFloatList.setOnClickListener(this);
         selectFromServer = findViewById(R.id.select_from_server);
         selectFromServer.setOnLongClickListener(this);
-        selectFromServer.setEnabled(false);
+        //selectFromServer.setEnabled(false);
 
         selectFromServer.setOnClickListener(this);
         Intent intent0 = getIntent();
@@ -80,10 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //获取当前语言
         String language = Locale.getDefault().getLanguage();
         //判断是否是日语
+        /*
         if (language.equals("ja")) {
             Toast.makeText(this, "既然你们对文字狱不喊不骂，那就河蟹你全家！", Toast.LENGTH_LONG).show();
         }
-
+        */
         /*if (!checkPermission(1)) {
             Toast.makeText(this, "没有shizuku权限", Toast.LENGTH_SHORT).show();
             return;
@@ -151,6 +152,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivityForResult(intent, REQUEST_CODE_OPEN_FILE);
         } else if (id == R.id.open_float_list){
             startActivity(new Intent(this, FloatListActivity.class));
+        } else if (id==R.id.select_from_server){
+            startActivity(new Intent(this, SelecFromServerActivity.class));
         }
     }
 
@@ -174,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onLongClick(View v) {
         View view = View.inflate(MainActivity.this, R.layout.edit_text, null);
         final EditText editText = view.findViewById(R.id.edit_text);
-        editText.setText(server.getString("address", "lyre-player.weixiansen574.top:1180"));
+        editText.setText(server.getString("address", "139.196.113.128:1180"));
         AlertDialog setServerDialog = new AlertDialog.Builder(MainActivity.this)
                 .setTitle("服务器地址")
                 .setMessage("仅开发者调试用，请不要乱改！")
@@ -197,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setServerDialog.getButton(DialogInterface.BUTTON_NEUTRAL).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editText.setText("lyre-player.weixiansen574.top:1180");
+                editText.setText("139.196.113.128:1180");
             }
         });
         return true;
