@@ -11,7 +11,7 @@
 
 v1可使用原作者的版本。
 
-v2有关在线曲库的代码段已被删除，请使用此仓库的修改版本[release](https://github.com/byzp/Genshin-Lyre-midi-player-server/release)
+v2有关在线曲库的代码段已被删除，请使用此仓库的修改版本[release](https://github.com/byzp/Genshin-Lyre-midi-player-server/releases)
 
 使用方法：长按"在线曲库"，将地址设置为
 
