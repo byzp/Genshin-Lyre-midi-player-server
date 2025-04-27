@@ -44,7 +44,8 @@ async def delete_music(
     删除音乐文件
     """
     if hash not in songs_db:
-        raise HTTPException(status_code=404, detail="Music not found.")
+        #raise HTTPException(status_code=404, detail="Music not found.")
+        return {"succeed": False, "message": "Music not found."}
 
     music = songs_db[hash]
     if music["delete_password"] != delete_password:
@@ -135,9 +136,11 @@ async def upload_file(
     """
     处理文件上传请求。
     """
+    global songs_db
     # 检查文件类型
     if file.content_type != "audio/midi":
-        raise HTTPException(status_code=400, detail="Invalid file type. Only MIDI files are allowed.")
+        #raise HTTPException(status_code=400, detail="Invalid file type. Only MIDI files are allowed.")
+        return JSONResponse(content={"succeed": False, "message": "File size exceeds the maximum limit of 1MB."})
 
     # 检查文件大小
     file_data = await file.read()
@@ -177,13 +180,16 @@ async def upload_file(
         f.write(file_data)
 
     # 保存到模拟数据库
-    songs_db[file_hash] = {
-        "name": file_name,
-        "upload_by": upload_by,
-        "duration": duration_ms,
-        "file_size": len(file_data),
-        "hash": file_hash,
-        "delete_password": delete_password
+    songs_db = {
+        file_hash : {
+            "name": file_name,
+            "upload_by": upload_by,
+            "duration": duration_ms,
+            "file_size": len(file_data),
+            "hash": file_hash,
+            "delete_password": delete_password
+        },
+        **songs_db
     }
     save_database()
 
