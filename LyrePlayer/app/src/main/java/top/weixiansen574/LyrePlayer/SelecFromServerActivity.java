@@ -96,7 +96,7 @@ public class SelecFromServerActivity extends AppCompatActivity {
         music_list = findViewById(R.id.online_music_library);
         uploadInfo = getSharedPreferences("upload_info", Context.MODE_PRIVATE);
         swipe = findViewById(R.id.swipe);
-        SERVER_ADDRESS = getSharedPreferences("server", Context.MODE_PRIVATE).getString("address", "lyre-player.weixiansen574.top:1180");
+        SERVER_ADDRESS = getSharedPreferences("server", Context.MODE_PRIVATE).getString("address", "139.196.113.128:1180");
         linearLayoutManager = new LinearLayoutManager(SelecFromServerActivity.this);
         music_list.setLayoutManager(linearLayoutManager);
         music_list.addItemDecoration(new DividerItemDecoration(SelecFromServerActivity.this, DividerItemDecoration.VERTICAL));
@@ -127,7 +127,7 @@ public class SelecFromServerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //intent调用系统文件管理器，选择midi文件
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("audio/midi");
+                intent.setType("*/*");
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 startActivityForResult(intent, 1);
             }

@@ -125,7 +125,7 @@ public class AdjustAndStartActivity extends AppCompatActivity implements View.On
             if (!intent0.getBooleanExtra("open_file", false)) {
                 //intent调用系统文件管理器，选择midi文件
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("audio/midi");
+                intent.setType("*/*");
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 startActivityForResult(intent, 1);
             } else {

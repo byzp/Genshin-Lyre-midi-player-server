@@ -17,6 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:label="@string/about"
+            android:name=".AboutActivity2"
+            android:exported="false" />
+        <activity
             android:name=".NetworkHelpActivity"
             android:exported="false"
             android:label="网络相关帮助"

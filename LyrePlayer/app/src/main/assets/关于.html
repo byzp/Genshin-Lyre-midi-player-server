@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Markdown Renderer</title>
+    <script src="showdown.min.js"></script>
+    <style>
+        img {
+            width: 100%;
+        }
+
+        h1 {
+            border-bottom: 1px solid #d0d7deb3;
+            font-size: 2em;
+            padding-bottom: .3em;
+        }
+
+        h2 {
+            padding-bottom: .3em;
+            font-size: 1.5em;
+            border-bottom: 1px solid #d0d7deb3;
+        }
+
+        a {
+            color:#0969da;
+        }
+    </style>
+</head>
+
+<body>
+<div id="content"></div>
+<script>
+        function getQueryParam(param) {
+            let urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+        let version = getQueryParam('version');
+        console.log(version)
+        var markdownContent = `
+
+# 原神midi自动演奏器
+## 当前版本
+${version}
+## 原项目源码
+
+[https://github.com/weixiansen574/Genshin-Lyre-midi-player2](https://github.com/weixiansen574/Genshin-Lyre-midi-player2)
+
+## 原作者
+
+[韦先森574](https://github.com/weixiansen574)
+
+## 此改版的源码
+
+[https://github.com/byzp/Genshin-Lyre-midi-player-server](https://github.com/byzp/Genshin-Lyre-midi-player-server)
+
+## 此改版的作者
+
+[byzp](https://github.com/byzp)
+
+`
+        const converter = new showdown.Converter();
+        document.getElementById("content").innerHTML = converter.makeHtml(markdownContent);
+    </script>
+</body>
+
+</html>

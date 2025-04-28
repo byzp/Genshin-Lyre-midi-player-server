@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public boolean onLongClick(View v) {
                 View view = View.inflate(MainActivity.this, R.layout.edit_text, null);
                 final EditText editText = view.findViewById(R.id.edit_text);
-                editText.setText(server.getString("address", "lyre-player.weixiansen574.top:1180"));
+                editText.setText(server.getString("address", "139.196.113.128:1180"));
                 AlertDialog setServerDialog = new AlertDialog.Builder(MainActivity.this)
                         .setTitle("服务器地址")
                         .setMessage("仅开发者调试用，请不要乱改！")
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (item.getItemId()) {
             case R.id.about:
-                startActivity(new Intent(this, AboutActivity.class));
+                startActivity(new Intent(this, AboutActivity2.class));
                 break;
             default:
                 break;
