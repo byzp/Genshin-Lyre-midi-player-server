@@ -84,4 +84,8 @@
     <string name="shangchuanzhong">上傳中……</string>
     <string name="mingchengbunengweikong">名稱不能為空！</string>
     <string name="mcbndy100gzf">名稱不能大於100個字符！</string>
+    <string name="zzhqzxyy">正在获取最新音乐……</string>
+        <string name="dqwjsydyc">读取文件时遇到异常：</string>
+    <string name="qxzzcnbfdwj">\n请选择正常能播放的MIDI文件！</string>
+    <string name="tshbsyxdmidiwj">它似乎不是有效的midi文件，因为文件头信息不符，请检查你的文件是否正常，或者你选择的文件不是真正的midi文件</string>
 </resources>

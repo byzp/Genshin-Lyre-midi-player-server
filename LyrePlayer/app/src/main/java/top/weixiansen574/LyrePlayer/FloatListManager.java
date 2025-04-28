@@ -51,9 +51,15 @@ public class FloatListManager extends SQLiteOpenHelper {
                 db.execSQL("CREATE TABLE IF NOT EXISTS musics (name TEXT Not null Primary key,type INTEGER Not null,note_list BLOB Not null) ");
                 while (cursor.moveToNext()){
                     ContentValues values = new ContentValues();
-                    values.put("name",cursor.getString(cursor.getColumnIndex("name")));
+                    int Index = cursor.getColumnIndex("name");
+                    if (Index != -1) {
+                        values.put("name", cursor.getString(Index));
+                    }
                     values.put("type",FloatListManager.MI_TYPE_LYRE);
-                    values.put("note_list",cursor.getBlob(cursor.getColumnIndex("note_list")));
+                    Index=cursor.getColumnIndex("note_list");
+                    if(Index != -1){
+                        values.put("note_list",cursor.getBlob(Index));
+                    }
                     db.insert("musics",null,values);
                 }
                 break;
@@ -88,7 +94,10 @@ public class FloatListManager extends SQLiteOpenHelper {
         Cursor cursor = database.rawQuery("select * from musics",null);
         ArrayList<String> musicNames = new ArrayList<>(cursor.getCount());
         while(cursor.moveToNext()){
-            musicNames.add(cursor.getString(cursor.getColumnIndex("name")));
+            int Index = cursor.getColumnIndex("name");
+            if (Index != -1) {
+                musicNames.add(cursor.getString(Index));
+            }
         }
         return musicNames;
     }
@@ -97,8 +106,8 @@ public class FloatListManager extends SQLiteOpenHelper {
         SQLiteDatabase database = getReadableDatabase();
         Cursor cursor = database.rawQuery("select type,note_list from musics where name=?",new String[]{musicName});
         if (cursor.moveToNext()){
-            byte[] data = cursor.getBlob(cursor.getColumnIndex("note_list"));
-            int type = cursor.getInt(cursor.getColumnIndex("type"));
+            byte[] data = cursor.getBlob(cursor.getColumnIndexOrThrow("note_list"));
+            int type = cursor.getInt(cursor.getColumnIndexOrThrow("type"));
             try {
                 ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
                 ArrayList<Note> lyreNotes = (ArrayList<Note>) ois.readObject();

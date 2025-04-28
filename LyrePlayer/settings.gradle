@@ -1,2 +1,19 @@
-include ':app'
+// settings.gradle
+pluginManagement {
+  repositories {
+    google()               // ← Android Gradle Plugin lives here
+    mavenCentral()         // ← all your other dependencies
+    gradlePluginPortal()   // ← fallback
+  }
+}
+
+dependencyResolutionManagement {
+  repositories {
+    google()
+    mavenCentral()
+  }
+}
+
+// include your modules as usual
+include(":app")
 rootProject.name='Lyre Player'
