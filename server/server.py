@@ -9,11 +9,13 @@ import json
 from io import BytesIO
 from datetime import timedelta
 import mido
+import asyncio
 
 app = FastAPI()
 
 # 索引文件路径
 db_file_path = "songs.json"
+db_lock = asyncio.Lock()
 
 # 初始化索引
 def load_database():
@@ -22,9 +24,10 @@ def load_database():
             return json.load(f)
     return {}
 
-def save_database():
-    with open(db_file_path, "w") as f:
-        json.dump(songs_db, f, indent=4, ensure_ascii=False)
+async def save_database():
+    async with db_lock:
+        with open(db_file_path, "w") as f:
+            json.dump(songs_db, f, indent=4, ensure_ascii=False)
 
 songs_db = load_database()
 
@@ -191,7 +194,7 @@ async def upload_file(
         },
         **songs_db
     }
-    save_database()
+    await save_database()
 
     duration_str = str(timedelta(milliseconds=duration_ms))
     return {
