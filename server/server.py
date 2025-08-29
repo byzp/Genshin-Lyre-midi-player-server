@@ -61,7 +61,7 @@ async def delete_music(
         os.remove(file_path)
 
     del songs_db[hash]
-    save_database()
+    await save_database()
     return {"succeed": True, "message": "Music deleted successfully."}
 
 @app.get("/latest_songs")
